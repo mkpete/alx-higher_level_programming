@@ -1,18 +1,20 @@
 #!/usr/bin/python3
-"""
-Module for pascal_triangle method.
-"""
+"""Defines a append_after function"""
 
 
-def pascal_triangle(n):
-    """
-    returns a list of lists of integers
-        Args:
-            n (int): number of lists and digits
-        Returns: list of lists
-    """
-    rows = [[1 for j in range(i + 1)] for i in range(n)]
-    for n in range(n):
-        for i in range(n - 1):
-            rows[n][i + 1] = sum(rows[n - 1][i:i + 2])
-    return rows
+def append_after(filename="", search_string="", new_string=""):
+    """Inserts a line of text to a file after
+        each line containing a specific string
+    Args:
+        filename (str): The name of the file to append
+        search_string (str): The search string
+        new_string (str): The new string
+        """
+    text = ""
+    with open(filename) as f:
+        for line in f:
+            text += line
+            if search_string in line:
+                text += new_string
+    with open(filename, "w") as f:
+        f.write(text)
